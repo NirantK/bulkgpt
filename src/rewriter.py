@@ -20,28 +20,8 @@ def rewrite(sku_description: str) -> str:
         engine="text-davinci-003",
         prompt=prompt,
         temperature=0.2,
-        max_tokens=400,
+        max_tokens=420,
         frequency_penalty=0.7,
         presence_penalty=0.8,
     )
     return str(response.choices[0].text)
-
-
-if __name__ == "__main__":
-    SAMPLE = """ 
-Release date:
-CRAVITY's New Album will be released on March 7th 2023.
-The shipment will be after this date.
-
-CRAVITY's 5th Mini Album - MASTER:PIECE (KiT ALBUM)
-
-Contents :
-- 1 Album package
-- 1 Air-kit
-- 1 Title credit card
-- 1 Post card
-- 1 Photocard set (24ea)
-- Member photocard (Random 1 out of 9)
-The outer case/box is simply for protecting goods. (Damages such as scratches or discoloration on the case/box cannot be compensated.)
-    """
-    print(rewrite(SAMPLE))

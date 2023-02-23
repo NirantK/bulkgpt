@@ -21,15 +21,17 @@ with st.form("description"):
     if uploaded_file is not None:
         # Reading the uploaded file
         dataframe = pd.read_csv(uploaded_file)
-        st.write(dataframe)
+        st.table(dataframe)
+    if submit and uploaded_file is None:
+        st.write("Please upload a .csv file with a column called 'text'")
 
-    if submit:
+    if submit and uploaded_file is not None:
         # Call OpenAI API
         st.write("Calling OpenAI. This can take a while...")
         dataframe["rewritten"] = dataframe["text"].apply(rewrite)
 
         st.write("Rewritten descriptions:")
-        st.write("\n\n\n".join(dataframe["rewritten"].tolist()))
+        st.table(dataframe)
 
         # Write to CSV
         st.write("Writing to CSV")
