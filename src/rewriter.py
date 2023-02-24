@@ -14,7 +14,7 @@ def rewrite(sku_description: str) -> str:
     Returns:
         str: _description_
     """
-    prompt = f"""TThis is a product description. Rewrite this in your own words to make it more casual. Ensure all information about what the product contains is included in final output. Add a call to action for the reader. Make it readable for website visitors by adding line breaks where needed. In the end, add some lines about the fact that buying this product will support the artist mentioned. Keep the same meaning:\n\n{sku_description}"""
+    prompt = f"""This is a product description. Rewrite this in your own words to make it more casual. Ensure all information about what the product contains is included in final output. Add a call to action for the reader. Make it readable for website visitors by adding line breaks where needed. In the end, add some lines about the fact that buying this product will support the artist mentioned. Keep the same meaning:\n\n{sku_description}"""
 
     response = openai.Completion.create(
         engine="text-davinci-003",
