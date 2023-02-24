@@ -8,6 +8,20 @@ import streamlit as st
 from rewriter import rewrite
 import pandas as pd
 
+
+def convert_df(df: pd.DataFrame):
+    """
+    Converts Dataframe to CSV
+
+    Args:
+        df (pd.DataFrame): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    return df.to_csv().encode("utf-8")
+
+
 # Main page
 st.title("Ecomm Rewriter")
 st.write("Rewrite your product descriptions using GPT3")
@@ -33,6 +47,12 @@ with st.form("description"):
         st.write("Rewritten descriptions:")
         st.table(dataframe)
 
-        # Write to CSV
-        st.write("Writing to CSV")
-        dataframe.to_csv("rewritten.csv", index=False)
+if dataframe is not None and uploaded_file is not None and submit:
+    csv = convert_df(dataframe)
+
+    st.download_button(
+        label="Download data as CSV",
+        data=csv,
+        file_name="rewritten.csv",
+        mime="text/csv",
+    )
