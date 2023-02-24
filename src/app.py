@@ -47,12 +47,13 @@ with st.form("description"):
         st.write("Rewritten descriptions:")
         st.table(dataframe)
 
-if dataframe is not None and uploaded_file is not None and submit:
-    csv = convert_df(dataframe)
+if uploaded_file is not None and submit:
+    if dataframe is not None:
+        csv = convert_df(dataframe)
 
-    st.download_button(
-        label="Download data as CSV",
-        data=csv,
-        file_name="rewritten.csv",
-        mime="text/csv",
-    )
+        st.download_button(
+            label="Download data as CSV",
+            data=csv,
+            file_name="rewritten.csv",
+            mime="text/csv",
+        )
